@@ -10,7 +10,7 @@ from pyfiglet import Figlet
 def main():
     print(Style.RESET_ALL)
     
-    main_input = input(Fore.BLUE + ">> " + Fore.WHITE)
+    main_input = input(Fore.BLUE + " >> " + Fore.WHITE)
 
     if main_input == "1":
         pass
@@ -26,7 +26,8 @@ def main():
         pass
     else:
         print(Fore.RED + ' Please enter a valid number...')
-        main()
+        main() # if you want in input more and more in one screen
+        # body() # if you want to reset the code and enter new input in new screen
 
 ################################################## BODY ##################################################
 
