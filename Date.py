@@ -1,6 +1,8 @@
 from email.utils import localtime
 import imp
-from tkinter import E, font
+import re
+import sys
+from tkinter import E, W, font
 import colorama
 from os import system
 from colorama import init, Fore, Style
@@ -28,7 +30,7 @@ def main():
     elif main_input == "3":
         Timer()
     elif main_input == "4":
-        pass
+        Chronometer()
     elif main_input == "5":
         pass
     elif main_input == "6":
@@ -102,17 +104,47 @@ def countdown(t):
     print(Fore.RED + '\n Timer Finished')
 
     if t == 0:
-        print(Fore.WHITE + " Do you want to continue ? (y/n/main)")
+        print(Fore.WHITE + " Do you want to continue ? (y/n/home)")
         answer_timer = input(Fore.BLUE + " >> ")
         
         if answer_timer == 'y':
             Timer()
-        elif answer_timer == 'main':
+        elif answer_timer == 'home':
             main()
         else:
             pass
 
-################################################## CORNOMETER ##################################################
+################################################## CHORNOMETER ##################################################
+
+def Chronometer():
+    system('cls')
+    print(Fore.YELLOW + " Chronometer\n\n")
+
+    print(Fore.WHITE + " Press Enter to start...\n")
+    start_time = time.time()
+
+    
+
+    #Chronometer_input = input(Fore.WHITE + 'Press 1 to start\n' + Fore.BLUE + ' >> ')
+
+    # if Chronometer_input == '1':
+        
+    #     # Counting Clock
+    #     while True:
+    #         localtime = time.localtime()
+    #         res = time.strftime('%S', localtime)
+    #         print(Fore.YELLOW + " " + res)
+    #         time.sleep(1)
+    #         system('cls')
+
+def time_chronometer(sec):
+    mins = sec // 60
+    sec = sec % 60
+    hours = mins // 60
+    mins = mins % 60
+
+    print(Fore.YELLOW + "Time lapsed = {0}:{1}:{2}".format(int(hours),int(mins),sec))
+
 
 ################################################## CONVERT P to E CALENDAR ##################################################
 
@@ -133,7 +165,7 @@ print(
     "  1. Persian Monthly Calendar\n" +
     "  2. English Monthly Calendar\n" +
     "  3. Timer\n" +
-    "  4. Cornometer\n" +
+    "  4. Chronometer\n" +
     "  5. Convert Persian Calendar to English\n" +
     "  6. Convert English Calendar to Persian"
 )
