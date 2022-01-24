@@ -1,5 +1,6 @@
+from email.utils import localtime
 import imp
-from tkinter import font
+from tkinter import E, font
 import colorama
 from os import system
 from colorama import init, Fore, Style
@@ -25,7 +26,7 @@ def main():
     elif main_input == "2":
         English_Monthly_Calendar()
     elif main_input == "3":
-        pass
+        Timer()
     elif main_input == "4":
         pass
     elif main_input == "5":
@@ -61,7 +62,7 @@ def English_Monthly_Calendar():
     print(Fore.WHITE + " Back to main ? (y/n)")
     answer = input(Fore.BLUE + ' >> ')
     if answer == 'y':
-        body()
+        main()
     else:
         pass
 
@@ -74,6 +75,43 @@ def English_Monthly_Calendar():
 
 ################################################## TIMER ##################################################
 
+def Timer():
+    system('cls')
+    print(Fore.YELLOW + " Timer\n\n")
+
+    print(Fore.WHITE + " Enter the timer : ")
+
+    timer_input = input(Fore.BLUE + " >> ")
+
+    print()
+
+    countdown(int(timer_input))
+
+
+
+def countdown(t):
+    
+    while t:
+        mins, secs = divmod(t, 60)
+        timer = '{:02d}:{:02d}'.format(mins, secs)
+        print(Fore.YELLOW + " " + timer, end="\r")
+        time.sleep(1)
+        t -= 1
+      
+    print()  
+    print(Fore.RED + '\n Timer Finished')
+
+    if t == 0:
+        print(Fore.WHITE + " Do you want to continue ? (y/n/main)")
+        answer_timer = input(Fore.BLUE + " >> ")
+        
+        if answer_timer == 'y':
+            Timer()
+        elif answer_timer == 'main':
+            main()
+        else:
+            pass
+
 ################################################## CORNOMETER ##################################################
 
 ################################################## CONVERT P to E CALENDAR ##################################################
@@ -82,25 +120,22 @@ def English_Monthly_Calendar():
 
 ################################################## BODY ##################################################
 
-def body():
-    system('cls') # clear the cmd screen
 
-    banner = Figlet(font="banner3")
-    print(Fore.GREEN + banner.renderText(" Date Time") + Fore.WHITE)
+system('cls') # clear the cmd screen
 
-    print("\n")
+banner = Figlet(font="banner3")
+print(Fore.GREEN + banner.renderText(" Date Time") + Fore.WHITE)
 
-    print(" What do you want to use?")
-    print(
-        "  1. Persian Monthly Calendar\n" +
-        "  2. English Monthly Calendar\n" +
-        "  3. Timer\n" +
-        "  4. Cornometer\n" +
-        "  5. Convert Persian Calendar to English\n" +
-        "  6. Convert English Calendar to Persian"
-    )
+print("\n")
 
-    main()
+print(" What do you want to use?")
+print(
+    "  1. Persian Monthly Calendar\n" +
+    "  2. English Monthly Calendar\n" +
+    "  3. Timer\n" +
+    "  4. Cornometer\n" +
+    "  5. Convert Persian Calendar to English\n" +
+    "  6. Convert English Calendar to Persian"
+)
 
-body()
 main()
