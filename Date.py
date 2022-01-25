@@ -1,8 +1,4 @@
-from email.utils import localtime
-import imp
-import re
-import sys
-from tkinter import E, W, font
+import datetime
 import colorama
 from os import system
 from colorama import init, Fore, Style
@@ -84,15 +80,46 @@ def Timer():
     system('cls')
     print(Fore.YELLOW + " Timer\n\n")
 
-    print(Fore.WHITE + " Enter the timer : ")
+    print(Fore.WHITE + " Enter the time in hour : ")
+    timer_hour_input = int(input(Fore.BLUE + " >> "))
 
-    timer_input = input(Fore.BLUE + " >> ")
+    print(Fore.WHITE + " Enter the time in minute : ")
+    timer_minute_input = int(input(Fore.BLUE + " >> "))
+
+    print(Fore.WHITE + " Enter the time in second : ")
+    timer_second_input = int(input(Fore.BLUE + " >> "))
 
     print()
 
-    countdown(int(timer_input))
+    # countdown(int(timer_input)) # input must be by seconds
 
+    CountDown(timer_hour_input, timer_minute_input, timer_second_input)
 
+def CountDown (h, m, s):
+    
+    total_seconds = (h * 3600) + (m * 60) + s
+ 
+    print(Fore.YELLOW)
+
+    while total_seconds > 0:
+        timer = datetime.timedelta(seconds = total_seconds)
+        print(" " ,timer, end="\r")
+        time.sleep(1)
+        total_seconds -= 1
+
+    print()  
+    print(Fore.RED + '\n Timer Finished')
+
+    if total_seconds == 0:
+        print(Fore.WHITE + " Do you want to continue ? (y/n/home)")
+        answer_timer = input(Fore.BLUE + " >> ")
+        
+        if answer_timer == 'y':
+            Timer()
+        elif answer_timer == 'home':
+            main()
+        else:
+            pass
 
 def countdown(t):
     
