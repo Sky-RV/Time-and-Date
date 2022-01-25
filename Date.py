@@ -1,7 +1,5 @@
 import datetime
-from email.utils import localtime
-from re import L, T
-from threading import local
+from persiantools.jdatetime import JalaliDate
 import colorama
 from os import system
 from colorama import init, Fore, Style
@@ -10,10 +8,16 @@ import time
 import calendar
 
 DAYS = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
+DAYS_INT = [0, 1, 2, 3, 4, 5, 6]
 DAYS_small = ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri']
+PER_DAYS = ['Shanbe', '1 Shanbe', '2 Shanbe', '3 Shanbe', '4 Shanbe', '5 Shanbe', 'Jomae']
 
 MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+PER_MONTHS = ['Farvardin', 'Ordibehesht', 'Khordad', 'Tir', 'Mordad', 'Shahrivar', 'Mehr', 'Aban', 'Azar', 'Day', 'Bahman', 'Esfand']
 MONTHS_small = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', "Aug", 'Sep', 'Oct', 'Nov', 'Dec']
+
+SEASOND = ['Spring', 'Summer', 'Fall', 'Winter']
+PER_SEASONS = ['Bahar', 'Tabestan', 'Paiz', 'Zemestan']
 
 ################################################## MAIN ##################################################
 
@@ -23,7 +27,7 @@ def main():
     main_input = input(Fore.BLUE + " >> " + Fore.WHITE)
 
     if main_input == "1":
-        pass
+        Persian_Monthly_Calendar()
     elif main_input == "2":
         English_Monthly_Calendar()
     elif main_input == "3":
@@ -41,6 +45,45 @@ def main():
 
 ################################################## PERSIAN MONTHLY CALENDAR ##################################################
 
+def Persian_Monthly_Calendar():
+    system('cls')
+    print(Fore.YELLOW + " Persian Monthly Calendar\n\n")
+
+    print(Fore.WHITE + ' Enter Month (1-12) :')
+    per_month_input = input(Fore.BLUE + " >> ")
+
+    now = JalaliDate.today()
+    this_year = JalaliDate.today().year
+    this_month = JalaliDate.today().month
+    this_day = JalaliDate.today().day
+    this_season = ""
+    this_month_v = ""
+    this_day_v = ""
+
+    if this_month == 1 or this_month == 2 or this_month == 3:
+        this_season = 'Bahar'
+    elif this_month == 4 or this_month == 5 or this_month == 6:
+        this_season = 'Tabestan'
+    elif this_month == 7 or this_month == 8 or this_month == 9:
+        this_season = 'Paiz'
+    else:
+        this_season = 'Zemestan'
+    
+    en_day = time.strftime("%A")
+    for i in DAYS_INT:
+        if en_day in DAYS[i]:
+            this_day_v = PER_DAYS[i]
+
+    for j in range(1, 13):
+        if this_month == j:
+            this_month_v = PER_MONTHS[j]
+
+    print('\n')
+    print(Fore.LIGHTYELLOW_EX + ' Today : ' + str(this_year) + ' / ' + str(this_month) + ' / ' + str(this_day))
+    print(Fore.LIGHTYELLOW_EX + ' Today : ' + str(this_season) + ' - ' + str(this_month_v) + ' - ' + str(this_day_v) + '\n')
+
+    #print(Fore.CYAN + " " + JalaliDate.month)
+
 ################################################## ENGLISH MONTHLY CALENDAR ##################################################
 
 def English_Monthly_Calendar():
@@ -55,10 +98,22 @@ def English_Monthly_Calendar():
     this_day = time.strftime('%d')
     this_month_num = time.strftime("%m") # this month in number
     this_month_voc = time.strftime("%B") # this month in words
+    this_day_v = time.strftime('%A')
+    this_season = ""
+    
+    if this_month_num == 1 or this_month_num == 2 or this_month_num == 3:
+        this_season = 'Spring'
+    elif this_month_num == 4 or this_month_num == 5 or this_month_num == 6:
+        this_season = 'Summer'
+    elif this_month_num == 7 or this_month_num == 8 or this_month_num == 9:
+        this_season = 'Fall'
+    else:
+        this_season = 'Winter'
 
     print('\n')
 
-    print(Fore.LIGHTYELLOW_EX + ' Today : ' + this_month_num + ' / ' + this_day + ' / ' + this_year + '\n')
+    print(Fore.LIGHTYELLOW_EX + ' Today : ' + this_month_num + ' / ' + this_day + ' / ' + this_year)
+    print(Fore.LIGHTYELLOW_EX + ' Today : ' + this_day_v + ' - ' + this_month_voc + ' - ' + this_season + '\n')
 
     print(Fore.CYAN + " " + calendar.month(int(this_year), int(en_month_input)))
     print(Style.RESET_ALL)
@@ -228,9 +283,9 @@ print("\n")
 print(" What do you want to use?")
 print(
     "  1. Persian Monthly Calendar\n" +
-    "  2. English Monthly Calendar\n" +
-    "  3. Timer\n" +
-    "  4. Chronometer\n" +
+    "  2. English Monthly Calendar\n" + # done
+    "  3. Timer\n" + # done
+    "  4. Chronometer\n" + # half
     "  5. Convert Persian Calendar to English\n" +
     "  6. Convert English Calendar to Persian"
 )
