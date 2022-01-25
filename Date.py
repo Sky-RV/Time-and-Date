@@ -1,4 +1,7 @@
 import datetime
+from email.utils import localtime
+from re import L, T
+from threading import local
 import colorama
 from os import system
 from colorama import init, Fore, Style
@@ -150,10 +153,42 @@ def Chronometer():
     system('cls')
     print(Fore.YELLOW + " Chronometer\n\n")
 
-    print(Fore.WHITE + " Press Enter to start...\n")
+    print(Fore.WHITE + " Press S to start...\n" +
+                        " Press E to stop...\n" + 
+                        " Press Enter for each lap...")
     start_time = time.time()
+    end_time = start_time
+    lap = 1
+    value = ""
 
-    
+    while value.lower() != "e":
+        value = input(Fore.BLUE + " >> ")
+
+        lap_time = round((time.time() - end_time), 2)
+        total_time = round((time.time() - start_time), 2)
+
+        # Here, should be counter time
+
+        print(Fore.YELLOW + " Lap No. " + str(lap))
+        print(Fore.YELLOW + ' Total Time : ' + str(total_time))
+        print(Fore.YELLOW + " Lap Time : " + str(lap_time))
+
+        end_time = time.time()
+        lap += 1
+
+    print()  
+    print(Fore.RED + '\n Timer Finished')
+
+    if value == 'E' or value == 'e':
+        print(Fore.WHITE + " Do you want to continue ? (y/n/home)")
+        answer_timer = input(Fore.BLUE + " >> ")
+        
+        if answer_timer == 'y':
+            Timer()
+        elif answer_timer == 'home':
+            main()
+        else:
+            pass
 
     #Chronometer_input = input(Fore.WHITE + 'Press 1 to start\n' + Fore.BLUE + ' >> ')
 
