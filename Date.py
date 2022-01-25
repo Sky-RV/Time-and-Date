@@ -53,10 +53,13 @@ def English_Monthly_Calendar():
 
     now = time.ctime()
     this_year = time.strftime('%Y')
+    this_day = time.strftime('%d')
     this_month_num = time.strftime("%m") # this month in number
     this_month_voc = time.strftime("%B") # this month in words
 
     print('\n')
+
+    print(Fore.LIGHTYELLOW_EX + ' Today : ' + this_month_num + ' / ' + this_day + ' / ' + this_year + '\n')
 
     print(Fore.CYAN + " " + calendar.month(int(this_year), int(en_month_input)))
     print(Style.RESET_ALL)
