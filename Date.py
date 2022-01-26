@@ -1,5 +1,6 @@
 import datetime
 from datetime import datetime
+from email.utils import localtime
 import sys
 import pytz
 from tkinter import font
@@ -306,6 +307,8 @@ def Today_Time():
     print(Fore.CYAN + " Current New York Timezone = " + NY)
     print(Fore.CYAN + " Current Tehran Timezone   = " + IT)
 
+    #Count_Time('s')
+
     print("\n" + Style.RESET_ALL)
 
     print(Fore.WHITE + " Back to main ? (y/n)")
@@ -314,6 +317,13 @@ def Today_Time():
         main()
     else:
         pass
+
+def Count_Time(start):
+    while start:
+        localtime = time.localtime()
+        res = time.strftime(Fore.CYAN + " %H : %M : %S", localtime)
+        print(res, end="\r")
+        time.sleep(1)
 
 ################################################## TODAY'S DATE ##################################################
 
