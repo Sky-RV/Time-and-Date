@@ -1,4 +1,8 @@
 import datetime
+from datetime import datetime
+import sys
+import pytz
+from tkinter import font
 from persiantools.jdatetime import JalaliDate
 import colorama
 from os import system
@@ -38,6 +42,10 @@ def main():
         pass
     elif main_input == "6":
         pass
+    elif main_input == '7':
+        Today_Time()
+    elif main_input == '8':
+        Today_Date()
     else:
         print(Fore.RED + ' Please enter a valid number...')
         main() # if you want in input more and more in one screen
@@ -82,7 +90,7 @@ def Persian_Monthly_Calendar():
     print(Fore.LIGHTYELLOW_EX + ' Today : ' + str(this_year) + ' / ' + str(this_month) + ' / ' + str(this_day))
     print(Fore.LIGHTYELLOW_EX + ' Today : ' + str(this_season) + ' - ' + str(this_month_v) + ' - ' + str(this_day_v) + '\n')
 
-    #print(Fore.CYAN + " " + JalaliDate.month)
+    # Show input's month
 
 ################################################## ENGLISH MONTHLY CALENDAR ##################################################
 
@@ -270,6 +278,50 @@ def time_chronometer(sec):
 
 ################################################## CONVERT E to P CALENDAR ##################################################
 
+################################################## TODAY'S TIME ##################################################
+
+def Today_Time():
+
+    system('cls')
+    banner = Figlet(font="banner3")
+    print(Fore.YELLOW + banner.renderText(" Time"))
+
+    print(Style.RESET_ALL)
+
+    # Your Time Zone
+    e_now = time.ctime()
+    e_current_time = time.strftime("%H : %M : %S")
+
+    # America / New York Time Zone
+    tz_NY = pytz.timezone('America/New_York')
+    datetime_NY = datetime.now(tz_NY)
+    NY = datetime_NY.strftime("%H : %M : %S")
+
+    # Iran / Tehran Time Zone
+    tz_Tehran = pytz.timezone('Asia/Tehran')
+    datetime_Teharan = datetime.now(tz_Tehran)
+    IT = datetime_Teharan.strftime("%H : %M : %S")
+
+    print(Fore.CYAN + " Current Your Timezone     = " + e_current_time)
+    print(Fore.CYAN + " Current New York Timezone = " + NY)
+    print(Fore.CYAN + " Current Tehran Timezone   = " + IT)
+
+    print("\n" + Style.RESET_ALL)
+
+    print(Fore.WHITE + " Back to main ? (y/n)")
+    answer = input(Fore.BLUE + ' >> ')
+    if answer == 'y':
+        main()
+    else:
+        pass
+
+################################################## TODAY'S DATE ##################################################
+
+def Today_Date():
+    
+    pass
+
+
 ################################################## BODY ##################################################
 
 
@@ -287,7 +339,9 @@ print(
     "  3. Timer\n" + # done
     "  4. Chronometer\n" + # half
     "  5. Convert Persian Calendar to English\n" +
-    "  6. Convert English Calendar to Persian"
+    "  6. Convert English Calendar to Persian\n" +
+    "  7. Today's Time\n" +
+    "  8. Today's Date"
 )
 
 main()
