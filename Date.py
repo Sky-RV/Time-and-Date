@@ -329,8 +329,62 @@ def Count_Time(start):
 
 def Today_Date():
     
-    pass
+    system('cls')
+    banner = Figlet(font="banner3")
+    print(Fore.YELLOW + banner.renderText(" Date"))
 
+    print(Style.RESET_ALL)
+
+    # Your Date Zone
+    now = time.ctime() # Wed Jan 26 23:58:18 2022
+    cuttent_time = time.strftime("%d / %m / %Y") # 30 / 10 / 2020
+    current_time_w = time.strftime("%A - %B") # sunday - march
+
+    # America / New York Date Zone
+    ny_current = time.strftime("%m / %d / %Y") # 1 / 27 / 2022
+    ny_current_w = time.strftime("%A %B %d %Y") # sunday march 3 2012
+
+    # Iran / Tehran Date Zone
+    this_month = ""
+    this_day = ""
+    it_now = JalaliDate.today() # 1400-11-7
+    it_current = str(it_now.year) + ' / ' + str(it_now.month) + ' / ' + str(it_now.day)
+
+    en_day = time.strftime("%A")
+    for i in DAYS_INT:
+        if en_day in DAYS[i]:
+            this_day = PER_DAYS[i]
+
+    for j in range(1, 13):
+        if it_now.month == j:
+            this_month = PER_MONTHS[j]
+
+    it_current_w = this_day + " " + this_month + " " + str(it_now.year)
+
+    print(Fore.WHITE + " Current Your Date Zone     : \n " + Fore.CYAN +
+                        cuttent_time + '\n ' +
+                        current_time_w)
+
+    print(Fore.GREEN + " ----------------------------------------------------------------------------------")
+
+    print(Fore.WHITE + " Current New York Date Zone : \n " + Fore.CYAN +
+                        ny_current + '\n ' +
+                        ny_current_w)
+
+    print(Fore.GREEN + " ----------------------------------------------------------------------------------")
+
+    print(Fore.WHITE + " Current Tehran Date Zone   : \n " + Fore.CYAN +
+                        it_current + '\n ' + 
+                        it_current_w)
+
+    print("\n" + Style.RESET_ALL)
+
+    print(Fore.WHITE + " Back to main ? (y/n)")
+    answer = input(Fore.BLUE + ' >> ')
+    if answer == 'y':
+        main()
+    else:
+        pass
 
 ################################################## BODY ##################################################
 
