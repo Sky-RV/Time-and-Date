@@ -398,14 +398,14 @@ print("\n")
 
 print(" What do you want to use?")
 print(
-    "  1. Persian Monthly Calendar\n" +
+    "  1. Persian Monthly Calendar\n" + # half
     "  2. English Monthly Calendar\n" + # done
     "  3. Timer\n" + # done
     "  4. Chronometer\n" + # half
     "  5. Convert Persian Calendar to English\n" +
     "  6. Convert English Calendar to Persian\n" +
-    "  7. Today's Time\n" +
-    "  8. Today's Date"
+    "  7. Today's Time\n" + # done
+    "  8. Today's Date" # done
 )
 
 main()
