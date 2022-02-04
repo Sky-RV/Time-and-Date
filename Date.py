@@ -29,6 +29,27 @@ PER_SEASONS = ['Bahar', 'Tabestan', 'Paiz', 'Zemestan']
 def main():
     print(Style.RESET_ALL)
     
+    system('cls') # clear the cmd screen
+
+    banner = Figlet(font="banner3")
+    print(Fore.GREEN + banner.renderText(" Date Time") + Fore.WHITE)
+
+    print("\n")
+
+    print(" What do you want to use?")
+    print(
+        "  1. Persian Monthly Calendar\n" + # half
+        "  2. English Monthly Calendar\n" + # done
+        "  3. Timer\n" + # done
+        "  4. Chronometer\n" + # half
+        "  5. Convert Persian Calendar to English\n" +
+        "  6. Convert English Calendar to Persian\n" +
+        "  7. Today's Time\n" + # done
+        "  8. Today's Date\n" + # done
+        "  9. English Calendar\n" +
+        "  10. Persian Calendar"
+    )
+    
     main_input = input(Fore.BLUE + " >> " + Fore.WHITE)
 
     if main_input == "1":
@@ -47,6 +68,10 @@ def main():
         Today_Time()
     elif main_input == '8':
         Today_Date()
+    elif main_input == '9':
+        English_Calendar()
+    elif main_input == '10':
+        Persian_Calendar()
     else:
         print(Fore.RED + ' Please enter a valid number...')
         main() # if you want in input more and more in one screen
@@ -129,6 +154,7 @@ def English_Monthly_Calendar():
 
     print(Fore.WHITE + " Back to main ? (y/n)")
     answer = input(Fore.BLUE + ' >> ')
+    print(Style.RESET_ALL)
     if answer == 'y':
         main()
     else:
@@ -181,6 +207,8 @@ def CountDown (h, m, s):
         print(Fore.WHITE + " Do you want to continue ? (y/n/home)")
         answer_timer = input(Fore.BLUE + " >> ")
         
+        print(Style.RESET_ALL)
+        
         if answer_timer == 'y':
             Timer()
         elif answer_timer == 'home':
@@ -203,6 +231,8 @@ def countdown(t):
     if t == 0:
         print(Fore.WHITE + " Do you want to continue ? (y/n/home)")
         answer_timer = input(Fore.BLUE + " >> ")
+        
+        print(Style.RESET_ALL)
         
         if answer_timer == 'y':
             Timer()
@@ -246,6 +276,8 @@ def Chronometer():
     if value == 'E' or value == 'e':
         print(Fore.WHITE + " Do you want to continue ? (y/n/home)")
         answer_timer = input(Fore.BLUE + " >> ")
+        
+        print(Style.RESET_ALL)
         
         if answer_timer == 'y':
             Timer()
@@ -313,6 +345,9 @@ def Today_Time():
 
     print(Fore.WHITE + " Back to main ? (y/n)")
     answer = input(Fore.BLUE + ' >> ')
+    
+    print(Style.RESET_ALL)
+    
     if answer == 'y':
         main()
     else:
@@ -381,10 +416,35 @@ def Today_Date():
 
     print(Fore.WHITE + " Back to main ? (y/n)")
     answer = input(Fore.BLUE + ' >> ')
+    print(Style.RESET_ALL)
     if answer == 'y':
         main()
     else:
         pass
+
+################################################## English Calendar ##################################################
+
+def English_Calendar():
+    system('cls')
+    print(Fore.YELLOW + ' English Calendar\n\n')
+    
+    print(Fore.WHITE + ' Enter Year : ')
+    en_year_input = input(Fore.BLUE + " >> ")
+    
+    print(" " + Fore.CYAN + calendar.calendar(int(en_year_input)))
+    
+    print(Fore.WHITE + " Back to main ? (y/n)")
+    answer = input(Fore.BLUE + ' >> ')
+    print(Style.RESET_ALL)
+    if answer == 'y':
+        main()
+    else:
+        pass
+
+################################################## Persian Calendar ##################################################
+
+def Persian_Calendar():
+    pass
 
 ################################################## BODY ##################################################
 
@@ -405,7 +465,9 @@ print(
     "  5. Convert Persian Calendar to English\n" +
     "  6. Convert English Calendar to Persian\n" +
     "  7. Today's Time\n" + # done
-    "  8. Today's Date" # done
+    "  8. Today's Date\n" + # done
+    "  9. English Calendar\n" +
+    "  10. Persian Calendar"
 )
 
 main()
