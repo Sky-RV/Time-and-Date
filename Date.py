@@ -1,5 +1,5 @@
 import datetime
-from datetime import datetime
+from datetime import datetime, timedelta
 from email.utils import localtime
 import sys
 import pytz
@@ -169,7 +169,7 @@ def CountDown (h, m, s):
     print(Fore.YELLOW)
 
     while total_seconds > 0:
-        timer = datetime.timedelta(seconds = total_seconds)
+        timer = timedelta(seconds = total_seconds)
         print(" " ,timer, end="\r")
         time.sleep(1)
         total_seconds -= 1
