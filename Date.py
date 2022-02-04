@@ -1,6 +1,7 @@
 import datetime
 from datetime import datetime, timedelta
 from email.utils import localtime
+from re import S
 import sys
 import pytz
 from tkinter import font
@@ -11,6 +12,7 @@ from colorama import init, Fore, Style
 from pyfiglet import Figlet
 import time
 import calendar
+import khayyam
 
 DAYS = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 DAYS_INT = [0, 1, 2, 3, 4, 5, 6]
@@ -61,9 +63,9 @@ def main():
     elif main_input == "4":
         Chronometer()
     elif main_input == "5":
-        pass
+        Persian_to_English_Calendar()
     elif main_input == "6":
-        pass
+        English_to_Persian_Calendar()
     elif main_input == '7':
         Today_Time()
     elif main_input == '8':
@@ -309,7 +311,29 @@ def time_chronometer(sec):
 
 ################################################## CONVERT P to E CALENDAR ##################################################
 
+def Persian_to_English_Calendar():
+    pass
+
 ################################################## CONVERT E to P CALENDAR ##################################################
+
+def English_to_Persian_Calendar():
+    system('cls')
+    print(Fore.YELLOW + " Convert English date to Persian date\n\n")
+    
+    print(Fore.WHITE + ' Enter Year : ')
+    year = input(Fore.BLUE + ' >> ')
+    
+    print(Fore.WHITE + ' Enter Month : ')
+    month = input(Fore.BLUE + ' >> ')
+    
+    print(Fore.WHITE + ' Enter Day : ')
+    day = input(Fore.BLUE + ' >> ')
+    
+    print(Fore.CYAN)
+    
+    print(" English Date : " + month + "-" + day + "-" + year)
+        
+    print(" Persian Date : " , JalaliDate.to_jalali(int(year), int(month), int(day)))
 
 ################################################## TODAY'S TIME ##################################################
 
@@ -444,7 +468,21 @@ def English_Calendar():
 ################################################## Persian Calendar ##################################################
 
 def Persian_Calendar():
-    pass
+    system('cls')
+    print(Fore.YELLOW + ' Persian Calendar\n\n')
+    
+    print(Fore.WHITE + ' Enter Year : ')
+    en_year_input = input(Fore.BLUE + " >> ")
+    
+   # print(" " + Fore.CYAN + JalaliDate(year=1400))
+    
+    print(Fore.WHITE + " Back to main ? (y/n)")
+    answer = input(Fore.BLUE + ' >> ')
+    print(Style.RESET_ALL)
+    if answer == 'y':
+        main()
+    else:
+        pass
 
 ################################################## BODY ##################################################
 
