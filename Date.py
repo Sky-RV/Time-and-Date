@@ -312,7 +312,24 @@ def time_chronometer(sec):
 ################################################## CONVERT P to E CALENDAR ##################################################
 
 def Persian_to_English_Calendar():
-    pass
+    system('cls')
+    print(Fore.YELLOW + " Convert Persian date to English date\n\n")
+    
+    print(Fore.WHITE + ' Enter Year : ')
+    year = input(Fore.BLUE + ' >> ')
+    
+    print(Fore.WHITE + ' Enter Month : ')
+    month = input(Fore.BLUE + ' >> ')
+    
+    print(Fore.WHITE + ' Enter Day : ')
+    day = input(Fore.BLUE + ' >> ')
+    
+    print(Fore.CYAN)
+    
+    print(" English Date : " + month + "-" + day + "-" + year)
+        
+    print(" Persian Date :" , JalaliDate(int(year), int(month), int(day)).to_gregorian())
+
 
 ################################################## CONVERT E to P CALENDAR ##################################################
 
